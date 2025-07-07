@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Recuperação e Paz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      color: #333;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .hora {
+      font-size: 26px;
+      font-weight: bold;
+      color: #00796b;
+    }
+    .verso, .mensagem, .acao, .reflexao, .carinho {
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+    .somCalmo {
+      margin-top: 20px;
+    }
+    audio {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .btn {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hora" id="horaAtual"></div>
+
+    <div class="verso" id="versoDia">
+      <strong>Verso do dia:</strong><br>
+      “Não temas, porque eu sou contigo...” (Isaías 41:10)
+    </div>
+
+    <div class="mensagem">
+      <strong>Mensagem de força:</strong><br>
+      Hoje você não precisa vencer tudo. Só precisa existir, respirar e confiar. Deus já começou sua cura no invisível.
+    </div>
+
+    <div class="acao">
+      <strong>Ação de cuidado agora:</strong><br>
+      ✅ Beba 150 ml de água devagar<br>
+      ✅ Sente-se ao lado da janela ou de uma planta<br>
+      ✅ Respire profundamente 6 vezes com os olhos fechados
+    </div>
+
+    <div class="reflexao" id="reflexaoTexto">
+      <strong>Reflexão interior:</strong><br>
+      “Não sou o que fui ontem. Mas sou o suficiente para hoje. Deus me vê com olhos de ternura.”
+    </div>
+
+    <div class="carinho" id="fraseCarinho">
+      <strong>Frase de carinho para você:</strong><br>
+      “Se você soubesse o quanto é amado, teria paz agora mesmo. Você é mais precioso do que imagina.”
+    </div>
+
+    <div class="somCalmo">
+      <strong>Som para ouvir enquanto descansa:</strong><br>
+      <audio controls>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+    </div>
+  </div>
+
+  <button class="btn" onclick="trocarVerso()">Novo verso e reflexão</button>
+
+  <script>
+    function atualizarHora() {
+      const agora = new Date();
+      agora.setHours(agora.getHours() - 3); // Fuso horário Belém-PA
+      const hora = agora.toLocaleTimeString('pt-BR', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+      document.getElementById("horaAtual").textContent = `Hora atual: ${hora}`;
+    }
+
+    const versos = [
+      "“Não temas, porque eu sou contigo...” (Isaías 41:10)",
+      "“Lançando sobre Ele toda a vossa ansiedade...” (1 Pedro 5:7)",
+      "“O Senhor é meu pastor, nada me faltará.” (Salmos 23:1)",
+      "“Deus é refúgio e fortaleza...” (Salmos 46:1)"
+    ];
+
+    const reflexoes = [
+      "Hoje eu escolho descansar e confiar.",
+      "Minha alma precisa mais de calma do que de pressa.",
+      "Deus não espera que eu vença, mas que eu confie.",
+      "Meu corpo está cansado, mas minha esperança está viva."
+    ];
+
+    const carinhos = [
+      "“Você é amado exatamente como está agora.”",
+      "“Você não é um fardo. Você é uma luz em reconstrução.”",
+      "“Mesmo ferido, você é precioso.”",
+      "“Deus não se esqueceu de você nem por 1 segundo.”",
+      "“Você é importante até nos dias em que não consegue levantar.”"
+    ];
+
+    function trocarVerso() {
+      const v = versos[Math.floor(Math.random() * versos.length)];
+      const r = reflexoes[Math.floor(Math.random() * reflexoes.length)];
+      const c = carinhos[Math.floor(Math.random() * carinhos.length)];
+      document.getElementById("versoDia").innerHTML = `<strong>Verso do dia:</strong><br>${v}`;
+      document.getElementById("reflexaoTexto").innerHTML = `<strong>Reflexão interior:</strong><br>${r}`;
+      document.getElementById("fraseCarinho").innerHTML = `<strong>Frase de carinho para você:</strong><br>${c}`;
+    }
+
+    setInterval(atualizarHora, 1000);
+    atualizarHora();
+  </script>
+</body>
+</html>
